@@ -19,6 +19,11 @@ public class CustomersPaidController {
         return customerPaidRepository.findAll();
     }
 
+    @GetMapping("/sum")
+    public Long getCountFood(){
+        return customerPaidRepository.sumPrice();
+    }
+
     @PostMapping("/new")
     public void createCustomersPaid(@RequestBody CustomersPaid food){
         customerPaidRepository.save(food);

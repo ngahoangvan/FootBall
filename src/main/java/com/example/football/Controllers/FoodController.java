@@ -19,6 +19,11 @@ public class FoodController {
         return foodRepository.findAll();
     }
 
+    @GetMapping("/count")
+    public Long getCountFood(){
+        return foodRepository.countFood();
+    }
+
     @PostMapping("/new")
     public void createFood(@RequestBody Food food){
         foodRepository.save(food);

@@ -20,4 +20,9 @@ public class CustomerController {
     public Iterable<Customer> getAllStadium(){
         return customerRepository.findAll();
     }
+
+    @GetMapping("/count")
+    public Long getCountFood(){
+        return customerRepository.countCustomer();
+    }
 }

@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/drink")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 public class DrinkController {
 
     @Autowired
@@ -19,14 +21,24 @@ public class DrinkController {
         return drinkRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Optional<Drink> getOneDrink(@PathVariable int id){
+        return drinkRepository.findById(id);
+    }
+
+    @GetMapping("/count")
+    public Long getCountDrink(){
+        return drinkRepository.countDrink();
+    }
+
     @PostMapping("/new")
-    public void createDrink(@RequestBody Drink food){
-        drinkRepository.save(food);
+    public void createDrink(@RequestBody Drink drink){
+        drinkRepository.save(drink);
     }
 
     @PutMapping("/update")
-    public void updateDrink(@RequestBody Drink food){
-        drinkRepository.save(food);
+    public void updateDrink(@RequestBody Drink drink){
+        drinkRepository.save(drink);
     }
 
     @DeleteMapping("/delete/{id}")
