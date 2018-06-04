@@ -3,6 +3,7 @@ package com.example.football.Controllers;
 import com.example.football.Domains.Drink;
 import com.example.football.Repositories.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class DrinkController {
 
     @GetMapping()
     public Iterable<Drink> getAllDrink(){
-        return drinkRepository.findAll();
+        return drinkRepository.findAll(new Sort(Sort.Direction.ASC, "idDrink"));
     }
 
     @GetMapping("/{id}")

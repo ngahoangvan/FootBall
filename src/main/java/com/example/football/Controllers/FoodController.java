@@ -3,8 +3,11 @@ package com.example.football.Controllers;
 import com.example.football.Domains.Food;
 import com.example.football.Repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/food")
@@ -16,7 +19,12 @@ public class FoodController {
 
     @GetMapping()
     public Iterable<Food> getAllFood(){
-        return foodRepository.findAll();
+        return foodRepository.findAll( new Sort(Sort.Direction.ASC, "idFood"));
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Food> getOneDrink(@PathVariable int id){
+        return foodRepository.findById(id);
     }
 
     @GetMapping("/count")

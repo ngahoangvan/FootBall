@@ -9,4 +9,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value = "select count(id_customer) from customers",nativeQuery = true)
     Long countCustomer();
 
+    Iterable<Customer> findAllByDateContains(String date);
+
 }

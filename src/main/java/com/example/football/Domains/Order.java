@@ -1,9 +1,6 @@
 package com.example.football.Domains;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -12,11 +9,11 @@ public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
     @Column(name = "id_stadium")
     private int idStadium;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_customer")
     private int idCustomer;
 
@@ -43,4 +40,6 @@ public class Order implements Serializable {
     public void setIdCustomer(int idCustomer) {
         this.idCustomer = idCustomer;
     }
+
+
 }

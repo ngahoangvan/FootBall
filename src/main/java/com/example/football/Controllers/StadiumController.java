@@ -3,10 +3,10 @@ package com.example.football.Controllers;
 import com.example.football.Domains.Stadium;
 import com.example.football.Repositories.StadiumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/stadium")
@@ -18,6 +18,16 @@ public class StadiumController {
 
     @GetMapping()
     public Iterable<Stadium> getAllStadium(){
-        return stadiumRepository.findAll();
+        return stadiumRepository.findAll(new Sort(Sort.Direction.ASC, "idStadium"));
+    }
+
+    @GetMapping("/{date}")
+    public Iterable<Stadium> getCustomerByDate(@PathVariable String date){
+      return stadiumRepository.findStadiumByDate(date);
+    }
+
+    @GetMapping("/all")
+    public Iterable<Stadium> getStadiums(){
+        return stadiumRepository.getAllStadium();
     }
 }
